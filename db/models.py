@@ -81,7 +81,6 @@ class Post(db.Model):
         db.session.add(like)
         db.session.commit()
 
-
     def get_all(self):
         return {
             "id": self.id,

@@ -1,6 +1,8 @@
-import os, datetime
+import os
+import datetime
 
 DOCKER = False
+
 
 class Config:
     SECRET_KEY = os.environ.get("SECRET_KEY", 'secret')
@@ -18,4 +20,3 @@ class ApplicationConfig(Config):
     JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=120)
     JWT_REFRESH_TOKEN_EXPIRES = datetime.timedelta(days=1)
     ENDPOINT_MAKE_USER_OFFLINE_AFTER_N_SECONDS = 5
-

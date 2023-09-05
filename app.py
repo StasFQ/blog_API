@@ -15,14 +15,16 @@ init_users_apis(app)
 alembic = Alembic()
 alembic.init_app(app)
 
+
 @jwt.user_identity_loader
 def jwt_payload_user_identity_lookup(user):
-        return user
+    return user
+
 
 @jwt.user_lookup_loader
 def jwt_payload_user_lookup_callback(_jwt_header, jwt_data):
-        identity = jwt_data["sub"]
-        return User.query.filter_by(id=identity).one_or_none()
+    identity = jwt_data["sub"]
+    return User.query.filter_by(id=identity).one_or_none()
 
 
 if __name__ == '__main__':

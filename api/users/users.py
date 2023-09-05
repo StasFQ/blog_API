@@ -73,4 +73,3 @@ class GetUserActivityResource(Resource):
             "last_request_date": user.last_request_date.strftime('%Y-%m-%d %H:%M:%S')
         }
         return api_response(data, "Got user activity data")
-
