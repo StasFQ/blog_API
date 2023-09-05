@@ -74,7 +74,7 @@ class PostDislikeResource(Resource):
         user.update_last_request_time()
         db.session.commit()
 
-        return api_response(post.get_all(), "You Liked it!")
+        return api_response(post.get_all(), "You Disliked it!")
 
 
 class AnalyticsResource(Resource):

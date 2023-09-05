@@ -26,6 +26,7 @@ for _ in range(number_of_users):
 base_url = 'http://127.0.0.1:5000'
 created_posts = []
 
+
 def register_user(email, password, first_name):
     registration_url = f'{base_url}/api/register'
     data = {

@@ -1,0 +1,30 @@
+version: '3'
+services:
+  app:
+    build: .
+    ports:
+      - "5050:5050"
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+      - POSTGRES_DB=postgres
+      - POSTGRES_HOST=db
+      - JWT_SECRET_KEY=your-secret-key
+      - SECRET_KEY=your-secret-key
+      - SQLALCHEMY_DATABASE_URI=postgresql://postgres:postgres123@db:5432/postgres
+    depends_on:
+      - db
+    command: >
+      sh -c "flask db upgrade && python app.py"
+  db:
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres123
+      - POSTGRES_DB=postgres
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
