@@ -101,3 +101,4 @@ class AnalyticsResource(Resource):
         ).scalar()
 
         return {"likes_count": likes_count}
+

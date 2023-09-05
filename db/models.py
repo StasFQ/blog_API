@@ -84,6 +84,7 @@ class Post(db.Model):
 
     def get_all(self):
         return {
+            "id": self.id,
             "title": self.title,
             "description": self.description,
         }
