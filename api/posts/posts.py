@@ -77,7 +77,7 @@ class PostDislikeResource(Resource):
         return api_response(post.get_all(), "You Disliked it!")
 
 
-class AnalyticsResource(Resource):
+class AnalyticsLikeResource(Resource):
     @jwt_required()
     def get(self, post_id):
         date_from_str = request.args.get('date_from')
@@ -101,3 +101,29 @@ class AnalyticsResource(Resource):
         ).scalar()
 
         return {"likes_count": likes_count}
+
+
+class AnalyticsDislikeResource(Resource):
+    @jwt_required()
+    def get(self, post_id):
+        date_from_str = request.args.get('date_from')
+        date_to_str = request.args.get('date_to')
+        user = User.query.get(current_user.id)
+        user.update_last_request_time()
+        try:
+            date_from = datetime.strptime(date_from_str, '%Y-%m-%d')
+            date_to = datetime.strptime(date_to_str, '%Y-%m-%d')
+        except ValueError:
+            return {"error": "Invalid date format. Please use YYYY-MM-DD format."}, 400
+
+        post = Post.query.get(post_id)
+        if not post:
+            return api_abort(404, "Post not found")
+
+        dislikes_count = db.session.query(func.count()).filter(
+            Dislike.post_id == post_id,
+            Dislike.dislike_date >= date_from,
+            Dislike.dislike_date <= date_to
+        ).scalar()
+
+        return {"dislikes_count": dislikes_count}

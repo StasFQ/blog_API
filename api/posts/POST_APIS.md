@@ -85,10 +85,10 @@ POST /api/<int:post_id>/dislike
 }
 ```
 
-### **3. AnalyticsResource**
+### **3. AnalyticslikeResource**
 
 ```http
-GET /api/post/<int:post_id>/analytics
+GET /api/post/<int:post_id>/like/analytics
 ```
 
 - Authorization: Access token
@@ -100,7 +100,7 @@ GET /api/post/<int:post_id>/analytics
 | date_from_str   | str  | Yes      | -               | From date   |
 | date_to_str     | str  | Yes      | -               | To date     |
 ```http
-GET http://127.0.0.1:5000/api/post/100/analytics?date_from=2023-01-01&date_to=2023-12-31
+http://127.0.0.1:5000/api/post/200/like/analytics?date_from=2023-01-01&date_to=2023-12-31
 ```
 
 
@@ -108,6 +108,34 @@ GET http://127.0.0.1:5000/api/post/100/analytics?date_from=2023-01-01&date_to=20
 ```json
 {
     "likes_count": 5
+}
+
+```
+
+
+### **4. AnalyticsDislikeResource**
+
+```http
+GET /api/post/<int:post_id>/dislike/analytics
+```
+
+- Authorization: Access token
+
+**Params:**
+
+| Name     | Type | Required | Values(default) | Description |
+| -------- | ---- |----------|-----------------|-------------|
+| date_from_str   | str  | Yes      | -               | From date   |
+| date_to_str     | str  | Yes      | -               | To date     |
+```http
+GET http://127.0.0.1:5000/api/post/200/dislike/analytics?date_from=2023-01-01&date_to=2023-12-31
+```
+
+
+**Example response:**
+```json
+{
+    "dislikes_count": 3
 }
 
 ```

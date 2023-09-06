@@ -1,7 +1,7 @@
 import os
 import datetime
 
-DOCKER = True
+DOCKER = False
 
 
 class Config:
@@ -19,4 +19,3 @@ class ApplicationConfig(Config):
 
     JWT_ACCESS_TOKEN_EXPIRES = datetime.timedelta(minutes=120)
     JWT_REFRESH_TOKEN_EXPIRES = datetime.timedelta(days=1)
-    ENDPOINT_MAKE_USER_OFFLINE_AFTER_N_SECONDS = 5
