@@ -1,7 +1,7 @@
 import os
 import datetime
 
-DOCKER = False
+DOCKER = True
 
 
 class Config:
@@ -12,7 +12,7 @@ class Config:
 class ApplicationConfig(Config):
     DEBUG = True
 
-    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:Stason2005@localhost:5432/postgres'
+    SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:stas123@localhost:5432/postgres'
 
     if DOCKER:
         SQLALCHEMY_DATABASE_URI = 'postgresql://postgres:postgres123@db:5432/postgres'
